@@ -1,19 +1,29 @@
 package com.aathil.loginscreen
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.Toast
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validEmail
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        showPassword.setOnClickListener(View.OnClickListener {
+            if (showPassword.isChecked) {
+                passwordInput.transformationMethod = null
+            } else {
+                passwordInput.transformationMethod = PasswordTransformationMethod()
+            }
+        })
     }
 
     private fun validateEmail(){
@@ -54,18 +64,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showPass(view: View){
-        passwordInput.transformationMethod = null
+//        showPass.setOnClickListener { view!, isChecked ->
+//            if(isChecked){
+//                passwordInput.transformationMethod = null
+//            }
+//            else{
+//                passwordError.transformationMethod = PasswordTransformationMethod()
+//            }
+//
+//        }
+
+
+
+//        passwordInput.transformationMethod = null
+//        val handler = Handler()
+//        handler.postDelayed({reshowPassword()  }, 1000)
+////        val timeOut : Long = 10
+////        Handler().postDelayed({
+////            passwordError.transformationMethod = PasswordTransformationMethod()
+////
+////        }, timeOut)
 
 
     }
 
-    class Run {
-        companion object {
-            fun after(delay: Long, process: () -> Unit) {
-                Handler().postDelayed({
-                    process()
-                }, delay)
-            }
-        }
+
+
+    fun reshowPassword(){
+        passwordError.transformationMethod = PasswordTransformationMethod()
+    }
+
+    fun showPassBtn(view: View){
+        startActivity(Intent(this, ForgetPassword::class.java))
     }
 }
