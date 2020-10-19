@@ -67,4 +67,8 @@ class MainActivity : AppCompatActivity() {
     fun showPassBtn(view: View){
         startActivity(Intent(this, ForgetPassword::class.java))
     }
+
+    fun signUp(view: View){
+        startActivity(Intent(this, SignUp::class.java))
+    }
 }

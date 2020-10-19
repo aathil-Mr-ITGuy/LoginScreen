@@ -111,7 +111,7 @@
         android:id="@+id/signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:onClick="signUp"
         android:layout_marginBottom="120dp"
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
