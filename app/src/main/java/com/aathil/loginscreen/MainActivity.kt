@@ -63,36 +63,6 @@ class MainActivity : AppCompatActivity() {
         validatePassword()
     }
 
-    fun showPass(view: View){
-//        showPass.setOnClickListener { view!, isChecked ->
-//            if(isChecked){
-//                passwordInput.transformationMethod = null
-//            }
-//            else{
-//                passwordError.transformationMethod = PasswordTransformationMethod()
-//            }
-//
-//        }
-
-
-
-//        passwordInput.transformationMethod = null
-//        val handler = Handler()
-//        handler.postDelayed({reshowPassword()  }, 1000)
-////        val timeOut : Long = 10
-////        Handler().postDelayed({
-////            passwordError.transformationMethod = PasswordTransformationMethod()
-////
-////        }, timeOut)
-
-
-    }
-
-
-
-    fun reshowPassword(){
-        passwordError.transformationMethod = PasswordTransformationMethod()
-    }
 
     fun showPassBtn(view: View){
         startActivity(Intent(this, ForgetPassword::class.java))
