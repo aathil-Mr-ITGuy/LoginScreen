@@ -3,7 +3,9 @@ package com.aathil.loginscreen
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -26,18 +28,34 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    // email and password validation
+    private fun String.isEmptyEmail() =
+            !TextUtils.isEmpty(this)
+
+    private fun String.isValidEmail() =
+             Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+    private fun String.isValidPassword() =
+            !TextUtils.isEmpty(this)
+
+
     private fun validateEmail(){
 
         var email : String = emailInput.text.toString()
-        var isEmailValid = email.validEmail()
 
-        if(isEmailValid){
+        var isEmailValid = email.isValidEmail()
+        var isEmailEmpty = email.isEmptyEmail()
 
-            emailError.text = " "
-        }
-        else{
+        if(isEmailEmpty){
+            if(isEmailValid){
 
-            emailError.text = "Please Insert Valid email"
+                emailError.text = " "
+            }else{
+                emailError.text = "Please Insert Valid email"
+            }
+        } else{
+
+            emailError.text = "Email Should not be empty"
         }
 
 
@@ -45,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun validatePassword(){
 
         var password:String = passwordInput.text.toString()
-        var isPasswordValid: Boolean = password.nonEmpty()
+        var isPasswordValid: Boolean = password.isValidPassword()
 
         if(isPasswordValid){
             passwordError.text = ""
